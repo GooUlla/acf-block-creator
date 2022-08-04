@@ -372,7 +372,7 @@ class ACFBlockCreator extends Singleton {
 	public function enqueue_scripts() {
 		$home_path    = wp_normalize_path( get_home_path() );
 		$package_path = wp_normalize_path( dirname( dirname( __FILE__ ) ) );
-		$script_url   = site_url( str_replace( $home_path, '', $package_path ) . '/assets/js/acf-block-creator.js' );
+		$script_url   = WP_CONTENT_URL . '/themes/fulltheme/vendor/micropackage/acf-block-creator/assets/js/acf-block-creator.js';
 
 		wp_enqueue_script( 'acf-block-creator', $script_url, [ 'jquery' ], '1.0.0', true );
 	}
@@ -405,8 +405,12 @@ class ACFBlockCreator extends Singleton {
 		}
 
 		$markup_file = "fields/{$field['type']}.php";
-		$markup_file = $this->package_fs->exists( $markup_file ) ? $markup_file : 'fields/default.php';
-		$markup      = $this->package_fs->get_contents( $markup_file );
+		if( 'repeater' === $field['type'] ) {
+			$markup_file = $this->package_fs->exists( $markup_file ) ? $markup_file : 'fields/default.php';
+			$markup      = $this->package_fs->get_contents($markup_file);
+		} else {
+			$markup      = $this->package_fs->get_contents('fields/default.php');
+		}
 		$subfields   = [];
 
 		if ( 'repeater' === $field['type'] ) {
