@@ -3,12 +3,15 @@
  * Block template
  *
  * {COMMENT}
+ * Description:
+ * Icon:
+ * Keywords: 
+ * Enqueue Style:
+ * Enqueue Script:
+ * Enqueue Assets:
+ * Supports Anchor: false
  */
 
 ?>
 
-<div class="{CSS_CLASS}">
-
 {FIELDS}
-
-</div>
