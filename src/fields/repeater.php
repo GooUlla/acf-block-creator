@@ -1,6 +1,5 @@
 <?php if ( have_rows( '{name}' ) ) : ?>
-	<?php while ( have_rows( '{name}' ) ) : ?>
-		<?php the_row(); ?>
+	<?php while ( have_rows( '{name}' ) ) : the_row(); ?>
 
 {subfields}
 
